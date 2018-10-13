@@ -1,10 +1,12 @@
 const express = require('express');
 const app = express();
+const lodash = require('lodash');
+const {get} = lodash;
 
 app.get('/', (req, res) => {
-    console.info('Request:', req.headers);
-    const headers = req.headers;
-    res.send({status: 'Working!', receivedHeaders: headers});
+    const userIp = get(req, 'headers.x-forwarded-for') || '127.0.0.1';
+    console.info('Request IP:', userIp);
+    res.send({status: 'Working!', userIp: userIp});
 });
 
 const PORT = process.env.PORT || 5000;
