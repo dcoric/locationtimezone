@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
         latitude: ipInfo.ll[0],
         longitude: ipInfo.ll[1],
         IPv4: get(req, 'headers.x-forwarded-for'),
-        eu: ipInfo.eu,
+        eu: ipInfo.country === 'RS' ? "1" : ipInfo.eu,
         region: ipInfo.region,
         timezone: ipInfo.timezone
     }
