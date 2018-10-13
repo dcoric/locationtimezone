@@ -1,14 +1,21 @@
 const express = require('express');
 const app = express();
-const lodash = require('lodash');
-const {get} = lodash;
+const expressip = require('express-ip');
+const PORT = process.env.PORT || 5000;
+const path = require('path');
+
+app.use(expressip().getIpInfoMiddleware);
+
+
+app.set('PORT', PORT);
 
 app.get('/', (req, res) => {
-    const userIp = get(req, 'headers.x-forwarded-for') || '127.0.0.1';
-    console.info('Request IP:', userIp);
-    res.send({status: 'Working!', userIp: userIp});
+    const ipInfo = req.ipInfo;
+    var message = `Hey, you are browsing from ${ipInfo.city}, ${ipInfo.country}`;
+    res.send(message);
 });
 
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT);
+app.listen(app.get('PORT'), () => {
+    console.log('Express started on http://localhost:' +
+        app.get('PORT') + '; press Ctrl-C to terminate.');
+});

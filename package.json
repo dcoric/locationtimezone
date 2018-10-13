@@ -19,6 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "4.16.4",
+    "express-ip": "1.0.3",
     "lodash": "4.17.11"
   }
 }
