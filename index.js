@@ -19,7 +19,10 @@ app.get('/', (req, res) => {
         city: ipInfo.city,
         latitude: ipInfo.ll[0],
         longitude: ipInfo.ll[1],
-        IPv4: get(req, 'headers.x-forwarded-for')
+        IPv4: get(req, 'headers.x-forwarded-for'),
+        eu: ipInfo.eu,
+        region: ipInfo.region,
+        timezone: ipInfo.timezone
     }
     var message = `Hey, you are browsing from ${ipInfo.city}, ${ipInfo.country}`;
     console.log(message);
