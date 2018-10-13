@@ -3,10 +3,12 @@ const app = express();
 const expressip = require('express-ip');
 const PORT = process.env.PORT || 5000;
 const path = require('path');
+const cors = require('cors');
 const {get} = require('lodash');
 
 
 app.use(expressip().getIpInfoMiddleware);
+app.use(cors());
 
 
 app.set('PORT', PORT);
