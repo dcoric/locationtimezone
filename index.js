@@ -12,7 +12,8 @@ app.set('PORT', PORT);
 app.get('/', (req, res) => {
     const ipInfo = req.ipInfo;
     var message = `Hey, you are browsing from ${ipInfo.city}, ${ipInfo.country}`;
-    res.send(message);
+    console.log(message);
+    res.send(ipInfo);
 });
 
 app.listen(app.get('PORT'), () => {
