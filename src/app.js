@@ -11,7 +11,7 @@ app.use(cors());
 app.set('PORT', PORT);
 
 app.listen(PORT, () => {
-    console.log('Express started on http://localhost:' +
+  console.log('Express started on http://localhost:' +
         app.get('PORT') + '; press Ctrl-C to terminate.');
 });
 
