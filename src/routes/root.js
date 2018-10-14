@@ -15,7 +15,7 @@ module.exports = app => {
                 region: ipInfo.region,
                 timezone: ipInfo.timezone
             };
-            const message = `Hey, you are browsing from ${ipInfo.city}, ${ipInfo.country}`;
+            const message = `IP ${responseData.IPv4} is from ${ipInfo.city}, ${ipInfo.country}`;
             console.log(message);
             res.send(responseData);
         } catch (exception) {
