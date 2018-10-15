@@ -13,6 +13,7 @@ module.exports = app => {
       console.log(message);
       res.setHeader('Content-Type', 'application/json').send(responseData);
     } catch (exception) {
+      console.error(exception);
       res.status(500).send('Error processing IP address');
     }
   });
@@ -28,6 +29,7 @@ module.exports = app => {
       console.log('IP:', ipInfo);
       res.setHeader('Content-Type', 'application/json').send(repackIpInfo(ipInfo, ip));
     } catch (e) {
+      console.error(e);
       res.status(500).send('Error processing IP address ' + ip);
     }
   });
