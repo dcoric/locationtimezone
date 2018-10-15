@@ -11,7 +11,7 @@ module.exports = app => {
       let responseData = repackIpInfo(ipInfo, ip);
       const message = `IP ${responseData.IPv4} is from ${ipInfo.city}, ${ipInfo.country}`;
       console.log(message);
-      res.send(responseData);
+      res.setHeader('Content-Type', 'application/json').send(responseData);
     } catch (exception) {
       res.status(500).send('Error processing IP address');
     }
@@ -26,7 +26,7 @@ module.exports = app => {
     try {
       const ipInfo = expressip().getIpInfo(ip);
       console.log('IP:', ipInfo);
-      res.send(repackIpInfo(ipInfo, ip));
+      res.setHeader('Content-Type', 'application/json').send(repackIpInfo(ipInfo, ip));
     } catch (e) {
       res.status(500).send('Error processing IP address ' + ip);
     }
