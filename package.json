@@ -19,13 +19,13 @@
   "author": "Denis Coric",
   "license": "ISC",
   "dependencies": {
-    "cors": "2.8.4",
-    "express": "4.16.4",
-    "express-ip": "1.0.3",
-    "lodash": "4.17.11"
+    "cors": "2.8.5",
+    "express": "4.17.1",
+    "express-ip": "dcoric/express-ip",
+    "lodash": "4.17.15"
   },
   "devDependencies": {
-    "eslint": "5.7.0",
-    "nodemon": "1.18.4"
+    "eslint": "6.6.0",
+    "nodemon": "2.0.1"
   }
 }
