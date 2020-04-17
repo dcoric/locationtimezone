@@ -2,6 +2,7 @@
   "name": "locationtimezone",
   "version": "1.0.0",
   "description": "IP address and TimeZone handeling",
+  "repository": "git@github.com:dcoric/locationtimezone.git",
   "main": "index.js",
   "engines": {
     "node": "10.12.0",
@@ -25,7 +26,7 @@
     "lodash": "4.17.15"
   },
   "devDependencies": {
-    "eslint": "6.6.0",
-    "nodemon": "2.0.1"
+    "eslint": "6.8.0",
+    "nodemon": "2.0.3"
   }
 }
