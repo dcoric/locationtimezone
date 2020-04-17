@@ -1,6 +1,6 @@
 {
   "name": "locationtimezone",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "IP address and TimeZone handeling",
   "repository": "git@github.com:dcoric/locationtimezone.git",
   "main": "index.js",
