@@ -1,5 +1,5 @@
 const {get} = require('lodash');
-const expressip = require('express-ip');
+const ipProccessing = require('../ip-proccessing');
 const {ROOT_ROUTE, IP_ADDRESS} = require('./routes');
 const {repackIpInfo} = require('../helper/objectManipulation');
 
@@ -9,7 +9,8 @@ module.exports = app => {
     try {
       const ipInfo = req.ipInfo;
       let responseData = repackIpInfo(ipInfo, ip);
-      const message = `IP ${responseData.IPv4} is from ${ipInfo.city}, ${ipInfo.country}`;
+      const currentDateTime = new Date();
+      const message = `${currentDateTime.toISOString()} - IP ${responseData.IPv4} is from ${ipInfo.city}, ${ipInfo.country}`;
       console.log(message);
       res.set('Content-Type', 'application/json').send(responseData);
     } catch (exception) {
@@ -25,7 +26,7 @@ module.exports = app => {
       ip = get(req, 'headers.x-forwarded-for');
     }
     try {
-      const ipInfo = expressip().getIpInfo(ip);
+      const ipInfo = ipProccessing().getIpInfo(ip);
       console.log('IP:', ipInfo);
       res.set('Content-Type', 'application/json').send(repackIpInfo(ipInfo, ip));
     } catch (e) {

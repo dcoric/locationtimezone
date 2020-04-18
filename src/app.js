@@ -1,12 +1,12 @@
 const express = require('express');
-const expressip = require('express-ip');
+const ipProccessing = require('./ip-proccessing');
 const cors = require('cors');
 const rootRoute = require('./routes/root');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 
-app.use(expressip().getIpInfoMiddleware);
+app.use(ipProccessing().getIpInfoMiddleware);
 // let whitelist = [
 //   'http://localhost:3000',
 //   'https://brio.groundlink.com',
