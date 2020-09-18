@@ -5,8 +5,8 @@
   "repository": "git@github.com:dcoric/locationtimezone.git",
   "main": "index.js",
   "engines": {
-    "node": "10.12.0",
-    "npm": "6.4.1"
+    "node": ">=10.12.0",
+    "npm": ">=6.4.1"
   },
   "scripts": {
     "start": "node index.js",
@@ -22,11 +22,11 @@
   "dependencies": {
     "cors": "2.8.5",
     "express": "4.17.1",
-    "geoip-lite": "1.4.1",
-    "lodash": "4.17.19"
+    "geoip-lite": "1.4.2",
+    "lodash": "4.17.20"
   },
   "devDependencies": {
     "eslint": "6.8.0",
-    "nodemon": "2.0.3"
+    "nodemon": "2.0.4"
   }
 }
