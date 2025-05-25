@@ -1,0 +1,12 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "7755:7755"
+    environment:
+      - PORT=7755
+    volumes:
+      - ./logs:/usr/src/app/logs
+    restart: unless-stopped
