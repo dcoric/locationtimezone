@@ -1,16 +1,16 @@
-var geoip = require('geoip-lite');
+const geoip = require('geoip-lite');
 
 module.exports = function () {
-  var getIpInfo = function (ip) {
+  const getIpInfo = function (ip) {
     // IPV6 addresses can include IPV4 addresses
     // So req.ip can be '::ffff:86.3.182.58'
     // However geoip-lite returns null for these
     if (ip.includes('::ffff:')) {
       ip = ip.split(':').reverse()[0];
     }
-    var lookedUpIP = geoip.lookup(ip);
+    const lookedUpIP = geoip.lookup(ip);
     if ((ip === '127.0.0.1' || ip === '::1')) {
-      return {error:'This won\'t work on localhost'};
+      return { error: 'This won\'t work on localhost' };
     }
     if (!lookedUpIP){
       return { error: 'Error occured while trying to process the information' };
@@ -18,9 +18,9 @@ module.exports = function () {
     return lookedUpIP;
   };
 
-  var getIpInfoMiddleware = function (req, res, next) {
-    var xForwardedFor = (req.headers['x-forwarded-for'] || '').replace(/:\d+$/, '');
-    var ip = xForwardedFor || req.connection.remoteAddress;
+  const getIpInfoMiddleware = function (req, res, next) {
+    const xForwardedFor = (req.headers['x-forwarded-for'] || '').replace(/:\d+$/, '');
+    const ip = xForwardedFor || req.socket.remoteAddress;
     req.ipInfo = getIpInfo(ip);
     next();
   };

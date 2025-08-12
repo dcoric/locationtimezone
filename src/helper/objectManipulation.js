@@ -1,5 +1,13 @@
 module.exports = {
   repackIpInfo: (ipInfo, ip) => {
+    if (ipInfo.error) {
+      return { error: ipInfo.error };
+    }
+    
+    if (!ipInfo.ll || ipInfo.ll.length < 2) {
+      return { error: 'Invalid location data' };
+    }
+    
     return {
       country_code: ipInfo.country,
       country_name: ipInfo.country,
