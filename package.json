@@ -21,12 +21,12 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.19.2",
+    "express": "^4.21.2",
     "geoip-lite": "^1.4.10",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "eslint": "^8.57.0",
-    "nodemon": "^3.1.4"
+    "eslint": "^8.57.1",
+    "nodemon": "^3.1.10"
   }
 }
