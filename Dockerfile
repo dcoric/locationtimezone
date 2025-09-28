@@ -1,4 +1,4 @@
-FROM node:12-slim
+FROM node:18-slim
 
 # Create app directory
 #RUN mkdir -p /usr/src/app/uploads

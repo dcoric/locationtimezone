@@ -5,9 +5,9 @@ module.exports = {
    */
   apps: [
     {
-      name: "location-timezone",
-      script: "index.js",
-      max_memory_restart: "250M",
+      name: 'location-timezone',
+      script: 'index.js',
+      max_memory_restart: '250M',
       env: {
         PORT: 7755,
       },
