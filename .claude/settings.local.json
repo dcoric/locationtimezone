@@ -5,7 +5,8 @@
       "Bash(npm install)",
       "Bash(npm audit:*)",
       "Bash(npx eslint:*)",
-      "Bash(npm start)"
+      "Bash(npm start)",
+      "Bash(npm run test:coverage:*)"
     ],
     "deny": [],
     "ask": []
