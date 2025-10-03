@@ -1,11 +1,5 @@
 FROM node:18-slim
 
-# Create app directory
-#RUN mkdir -p /usr/src/app/uploads
-#RUN chown node:node /usr/src/app/uploads
-RUN mkdir -p /usr/src/app/logs
-RUN chown node:node /usr/src/app/logs
-
 WORKDIR /usr/src/app
 
 # Install app dependencies
@@ -15,11 +9,17 @@ RUN npm install --only=production
 # Bundle app source
 COPY . /usr/src/app
 
+# Set environment variables for Docker
+ENV DOCKER_ENV=true
+ENV NODE_ENV=production
 ARG API_URL
 ENV API_URL=${API_URL}
 
-EXPOSE 7755
-# USER node
+# Create non-root user for security
+RUN groupadd -r nodeuser && useradd -r -g nodeuser nodeuser
+RUN chown -R nodeuser:nodeuser /usr/src/app
+USER nodeuser
 
+EXPOSE 7755
 
 CMD ["node", "index.js"]

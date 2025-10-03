@@ -1,0 +1,29 @@
+{
+  service: 'locationtimezone',
+  version: '1.0.2',
+  port: 7755,
+  environment: 'development',
+  level: 'info',
+  message: 'Express started on http://localhost:7755; press Ctrl-C to terminate.',
+  timestamp: '2025-10-03 10:18:50'
+}
+{
+  service: 'locationtimezone',
+  version: '1.0.2',
+  requestedIp: '8.8.8.8',
+  userAgent: 'curl/8.7.1',
+  level: 'info',
+  message: 'IP lookup request received',
+  timestamp: '2025-10-03 10:25:31'
+}
+{
+  service: 'locationtimezone',
+  version: '1.0.2',
+  ip: '8.8.8.8',
+  city: '',
+  country: 'US',
+  region: '',
+  level: 'info',
+  message: 'IP geolocation lookup successful',
+  timestamp: '2025-10-03 10:25:31'
+}

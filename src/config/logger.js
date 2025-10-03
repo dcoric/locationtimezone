@@ -25,37 +25,50 @@ const consoleFormat = winston.format.combine(
 // Create transports array
 const transports = [];
 
-// Console transport for development
-if (process.env.NODE_ENV !== 'production') {
+const isProduction = process.env.NODE_ENV === 'production';
+const isDocker = process.env.DOCKER_ENV === 'true';
+const isPM2 = process.env.PM2_HOME !== undefined;
+
+// Console transport - always in development, and in production when in Docker
+if (!isProduction || isDocker) {
   transports.push(
     new winston.transports.Console({
-      format: consoleFormat,
+      format: isProduction ? logFormat : consoleFormat,
       level: process.env.LOG_LEVEL || 'info'
     })
   );
 }
 
-// File transports
-const logDir = process.env.LOG_DIR || './logs';
-transports.push(
-  // Error log
-  new winston.transports.File({
-    filename: path.join(logDir, 'error.log'),
-    level: 'error',
-    format: logFormat,
-    maxsize: 5242880, // 5MB
-    maxFiles: 5,
-    tailable: true
-  }),
-  // Combined log
-  new winston.transports.File({
-    filename: path.join(logDir, 'combined.log'),
-    format: logFormat,
-    maxsize: 5242880, // 5MB
-    maxFiles: 5,
-    tailable: true
-  })
-);
+// File transports - only when not in Docker (Docker should log to stdout/stderr)
+if (!isDocker) {
+  const logDir = process.env.LOG_DIR || './logs';
+
+  // Ensure log directory exists
+  const fs = require('fs');
+  if (!fs.existsSync(logDir)) {
+    fs.mkdirSync(logDir, { recursive: true });
+  }
+
+  transports.push(
+    // Error log
+    new winston.transports.File({
+      filename: path.join(logDir, 'error.log'),
+      level: 'error',
+      format: logFormat,
+      maxsize: 5242880, // 5MB
+      maxFiles: 5,
+      tailable: true
+    }),
+    // Combined log
+    new winston.transports.File({
+      filename: path.join(logDir, 'combined.log'),
+      format: logFormat,
+      maxsize: 5242880, // 5MB
+      maxFiles: 5,
+      tailable: true
+    })
+  );
+}
 
 // Create the logger
 const logger = winston.createLogger({
