@@ -1,4 +1,5 @@
 const Joi = require('joi');
+const logger = require('../config/logger');
 
 // IP address validation schema
 const ipSchema = Joi.string().ip({
@@ -13,11 +14,18 @@ const validateIpParam = (req, res, next) => {
   const { error } = ipSchema.validate(ip);
 
   if (error) {
-    return res.status(400).json({
-      error: 'Invalid IP address format',
-      message: error.details[0].message,
-      received: ip
+    const validationError = new Error('Invalid IP address format');
+    validationError.status = 400;
+    validationError.isJoi = true;
+    validationError.details = error.details;
+
+    logger.warn('IP parameter validation failed', {
+      ip,
+      error: error.details[0].message,
+      userAgent: req.get('User-Agent')
     });
+
+    return next(validationError);
   }
 
   next();
@@ -34,7 +42,11 @@ const validateIpHeader = (req, res, next) => {
     const { error } = ipSchema.validate(cleanIp);
 
     if (error) {
-      console.warn(`Invalid IP in headers: ${cleanIp}`);
+      logger.warn('Invalid IP in headers detected', {
+        ip: cleanIp,
+        originalHeader: ip,
+        error: error.details[0].message
+      });
       // Don't block the request, just log the warning
     }
   }

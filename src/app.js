@@ -5,6 +5,8 @@ const rateLimit = require('express-rate-limit');
 const ipProcessing = require('./ip-processing');
 const cors = require('cors');
 const rootRoute = require('./routes/root');
+const logger = require('./config/logger');
+const { errorHandler, notFoundHandler, validationErrorHandler } = require('./middleware/errorHandler');
 const app = express();
 const PORT = process.env.PORT || 7755;
 
@@ -36,8 +38,17 @@ app.use(cors(corsOptions));
 app.use(ipProcessing().getIpInfoMiddleware);
 app.set('PORT', PORT);
 
-app.listen(PORT, () => {
-  console.log(`Express started on http://localhost:${app.get('PORT')}; press Ctrl-C to terminate.`);
-});
-
+// Routes
 rootRoute(app);
+
+// Error handling middleware (must be last)
+app.use(validationErrorHandler);
+app.use(notFoundHandler);
+app.use(errorHandler);
+
+app.listen(PORT, () => {
+  logger.info(`Express started on http://localhost:${app.get('PORT')}; press Ctrl-C to terminate.`, {
+    port: PORT,
+    environment: process.env.NODE_ENV || 'development'
+  });
+});
