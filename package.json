@@ -38,6 +38,6 @@
     "eslint": "^8.57.1",
     "jest": "^30.2.0",
     "nodemon": "^3.1.11",
-    "supertest": "^7.1.4"
+    "supertest": "^7.2.2"
   }
 }
