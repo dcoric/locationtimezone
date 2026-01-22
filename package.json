@@ -30,11 +30,11 @@
     "geoip-lite": "^1.4.10",
     "helmet": "^8.1.0",
     "joi": "^18.0.2",
-    "lodash": "^4.17.21",
+    "lodash": "^4.17.23",
     "winston": "^3.19.0"
   },
   "devDependencies": {
-    "baseline-browser-mapping": "^2.9.15",
+    "baseline-browser-mapping": "^2.9.17",
     "eslint": "^8.57.1",
     "jest": "^30.2.0",
     "nodemon": "^3.1.11",
