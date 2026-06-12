@@ -34,7 +34,7 @@
     "winston": "^3.19.0"
   },
   "devDependencies": {
-    "baseline-browser-mapping": "^2.10.34",
+    "baseline-browser-mapping": "^2.10.36",
     "eslint": "^8.57.1",
     "jest": "^30.4.2",
     "nodemon": "^3.1.14",
